@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/RAtul14ApriL/tinyapp/issues"
   },
-  "homepage": "https://github.com/RAtul14ApriL/tinyapp#readme"
+  "homepage": "https://github.com/RAtul14ApriL/tinyapp#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
