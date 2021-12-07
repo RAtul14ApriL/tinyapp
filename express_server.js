@@ -9,12 +9,25 @@ const urlDatabase = {
 };
 
 app.get("/", (req, res) => {
-  res.send("Hello!");
+  res.send("Hello!\n");
 });
 
 app.get("/urls.json", (req, res) => {
   res.json(urlDatabase);
+});
+
+app.get("/hello", (req, res) => {
+  res.send("<html><body>Hello <b>World!</b></body></html>\n");
 })
+
+app.get("/gravity", (req, res) => {
+  const G = "Gravity";
+  res.send(`G for ${G}`);
+})
+
+// app.get("/fetch", (req, res) => {
+//   res.send(`G for ${G}`);
+// })
 
 app.listen(PORT, () => {
   console.log(`Server is running...`);
