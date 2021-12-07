@@ -23,6 +23,11 @@ app.get("/urls", (req, res) => {
   res.render("urls_index", templateVars);
 });
 
+app.get("/urls/:shortURL", (req, res) => {
+  const templateVars = { shortURL: req.params.shortURL, longURL: "http://www.lighthouselabs.ca" };
+  res.render("urls_show", templateVars);
+}); 
+
 app.get("/hello", (req, res) => {
   const templateVars = { "greetings": "Hello!"};
   res.render("hello_world", templateVars);
