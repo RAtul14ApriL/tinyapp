@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>Register</title>
+  </head>
+<body>
+  <header>
+    <%- include('./partials/_header'); %>
+  </header>
+  <main style="margin: 1em;">
+    <h3>Create an Account</h3>
+    <div class="card text-center">
+      <form method="post" action="/register">
+        <label for="fname">Email</label><br>
+        <input type="text" name="email" size="30" placeholder="email"><br><br>
+        <label for="lname">Password</label><br>
+        <input type="text" name="password" size="30" placeholder="password"><br><br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div> 
+  </main>
+   
+</body>
+</html>
