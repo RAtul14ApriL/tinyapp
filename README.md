@@ -1,8 +1,35 @@
-# TinyApp
-The ultimate URL shortener
+# TinyApp Intro
+The ultimate URL shortener, TinyApp, is a project based on HTML, CSS and Javascript using ExpressJS. This App has been created as a project of Lighthouse Labs Web Development Bootcamp November 2021 West Cohort. This app is created and submitted by Md Hefzul Bari AKA Ratul.
 
-# Summary
-This App has been created as a project of Lighthouse Labs Web Development Bootcamp November 2021 West Cohort. This app is created and submitted by Md Hefzul Bari AKA Ratul.
+# Features
+> Registration
+> Login
+> logout
+> Password hasing
+> Cookie encryption
+> Create and edit random short URLs from any longURL
+
+## Dependencies
+- Node.js
+- Express
+- EJS
+- bcrypt
+- body-parser
+- cookie-session
+- cookie-parser
+- Mocha & Chai for testing (Optional)
+
+## Getting Started
+- Install all dependencies (using the `npm install` command).
+- Run the development web server using the `node express_server.js` command.
+
+# Screenshots
+> ["Screenshot of URLs page"] (https://github.com/RAtul14ApriL/tinyapp/blob/main/screenshots/urls_page.png);
+> ["Screenshot of Single URLs page"] (https://github.com/RAtul14ApriL/tinyapp/blob/main/screenshots/single_urls_page.png);
+> ["Screenshot of Create new URLs page"] (https://github.com/RAtul14ApriL/tinyapp/blob/main/screenshots/create_new_url.png);
+> ["Screenshot of Register page"] (https://github.com/RAtul14ApriL/tinyapp/blob/main/screenshots/register_page.png);
+> ["Screenshot of Login page"] (https://github.com/RAtul14ApriL/tinyapp/blob/main/screenshots/login_page.png);
+> ["Screenshot of Delete URL page"] (https://github.com/RAtul14ApriL/tinyapp/blob/main/screenshots/delete_page.png);
 
 # Requirements covered
 >> Display Requirements
@@ -14,9 +41,7 @@ This App has been created as a project of Lighthouse Labs Web Development Bootca
       > a link to the login page (/login)
       > a link to the registration page (/register)
 
-
 >> Behaviour Requirements
-
   > GET /
     > if user is logged in:
       > (Minor) redirect to /urls
@@ -37,99 +62,99 @@ This App has been created as a project of Lighthouse Labs Web Development Bootca
       > if user is not logged in:
         > returns HTML with a relevant error message
 
-  GET /urls/new
-    if user is logged in:
-      returns HTML with:
-        the site header (see Display Requirements above)
-        a form which contains:
-        a text input field for the original (long) URL
-        a submit button which makes a POST request to /urls
-      if user is not logged in:
-       redirects to the /login page
+  > GET /urls/new
+    > if user is logged in:
+      > returns HTML with:
+        > the site header (see Display Requirements above)
+        > a form which contains:
+        > a text input field for the original (long) URL
+        > a submit button which makes a POST request to /urls
+      > if user is not logged in:
+       > redirects to the /login page
 
-  GET /urls/:id
-    if user is logged in and owns the URL for the given ID:
-      returns HTML with:
-        the site header (see Display Requirements above)
-        the short URL (for the given ID)
-        a form which contains:
-          the corresponding long URL
-          an update button which makes a POST request to /urls/:id
-          (Stretch) the date the short URL was created
-    if a URL for the given ID does not exist:
-      (Minor) returns HTML with a relevant error message      
-    if user is not logged in:
-      returns HTML with a relevant error message
-    if user is logged it but does not own the URL with the given ID:
-      returns HTML with a relevant error message
+  > GET /urls/:id
+    > if user is logged in and owns the URL for the given ID:
+      > returns HTML with:
+        > the site header (see Display Requirements above)
+        > the short URL (for the given ID)
+        > a form which contains:
+          > the corresponding long URL
+          > an update button which makes a POST request to /urls/:id
+          > (Stretch) the date the short URL was created
+    > if a URL for the given ID does not exist:
+      > (Minor) returns HTML with a relevant error message      
+    > if user is not logged in:
+      > returns HTML with a relevant error message
+    > if user is logged it but does not own the URL with the given ID:
+      > returns HTML with a relevant error message
 
-  GET /u/:id
-    if URL for the given ID exists:
-     redirects to the corresponding long URL
-    if URL for the given ID does not exist:
-     (Minor) returns HTML with a relevant error message
+  > GET /u/:id
+    > if URL for the given ID exists:
+     > redirects to the corresponding long URL
+    > if URL for the given ID does not exist:
+     > (Minor) returns HTML with a relevant error message
   
-  POST /urls
-    if user is logged in:
-      generates a short URL, saves it, and associates it with the user
-      redirects to /urls/:id, where :id matches the ID of the newly saved URL
-    if user is not logged in:
-      (Minor) returns HTML with a relevant error message
+  > POST /urls
+    > if user is logged in:
+      > generates a short URL, saves it, and associates it with the user
+      > redirects to /urls/:id, where :id matches the ID of the newly saved URL
+    > if user is not logged in:
+      > (Minor) returns HTML with a relevant error message
   
-  POST /urls/:id  
-    if user is logged in and owns the URL for the given ID:
-      updates the URL
-      redirects to /urls
-    if user is not logged in:
-      (Minor) returns HTML with a relevant error message
-    if user is logged it but does not own the URL for the given ID:
-      (Minor) returns HTML with a relevant error message
+  > POST /urls/:id  
+    > if user is logged in and owns the URL for the given ID:
+      > updates the URL
+      > redirects to /urls
+    > if user is not logged in:
+      > (Minor) returns HTML with a relevant error message
+    > if user is logged it but does not own the URL for the given ID:
+      > (Minor) returns HTML with a relevant error message
 
-  POST /urls/:id/delete
-    if user is logged in and owns the URL for the given ID:
-      deletes the URL
-      redirects to /urls
-    if user is not logged in:
-      (Minor) returns HTML with a relevant error message
-    if user is logged it but does not own the URL for the given ID:
-      (Minor) returns HTML with a relevant error message
+  > POST /urls/:id/delete
+    > if user is logged in and owns the URL for the given ID:
+      > deletes the URL
+      > redirects to /urls
+    > if user is not logged in:
+      > (Minor) returns HTML with a relevant error message
+    > if user is logged it but does not own the URL for the given ID:
+      > (Minor) returns HTML with a relevant error message
   
-  GET /login
-  if user is logged in:
-    (Minor) redirects to /urls
-  if user is not logged in:
-    returns HTML with:
-      a form which contains:
-        input fields for email and password
-        submit button that makes a POST request to /login
-  
-  GET /register
-    if user is logged in:
-      (Minor) redirects to /urls
-    if user is not logged in:
-      returns HTML with:
-        a form which contains:
-          input fields for email and password
-          a register button that makes a POST request to /register
+  > GET /login
+    > if user is logged in:
+      > (Minor) redirects to /urls
+    > if user is not logged in:
+      > returns HTML with:
+        > a form which contains:
+          > input fields for email and password
+          > submit button that makes a POST request to /login
+    
+  > GET /register
+    > if user is logged in:
+      > (Minor) redirects to /urls
+    > if user is not logged in:
+      > returns HTML with:
+        > a form which contains:
+          > input fields for email and password
+          > a register button that makes a POST request to /register
 
-  POST /login
-    if email and password params match an existing user:
-      sets a cookie
-      redirects to /urls
-    if email and password params don't match an existing user:
-      returns HTML with a relevant error message
+  > POST /login
+    > if email and password params match an existing user:
+      > sets a cookie
+      > redirects to /urls
+    > if email and password params don't match an existing user:
+      > returns HTML with a relevant error message
 
-  POST /register
-    if email or password are empty:
-      returns HTML with a relevant error message
-    if email already exists:
-      returns HTML with a relevant error message
-    otherwise:
-      creates a new user
-      encrypts the new user's password with bcrypt
-      sets a cookie
-      redirects to /urls
+  > POST /register
+    > if email or password are empty:
+      > returns HTML with a relevant error message
+    > if email already exists:
+      > returns HTML with a relevant error message
+    > otherwise:
+      > creates a new user
+      > encrypts the new user's password with bcrypt
+      > sets a cookie
+      > redirects to /urls
   
-  POST /logout
-    deletes cookie
-    redirects to /urls
+  > POST /logout
+    > deletes cookie
+    > redirects to /urls
