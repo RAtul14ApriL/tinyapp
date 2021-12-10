@@ -11,8 +11,8 @@
     "type": "git",
     "url": "git+https://github.com/RAtul14ApriL/tinyapp.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["LHL", "URL Shortener", "Lighthouse Labs", "URL squeezer", "URL compresser"],
+  "author": "Md Hefzul Bari",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/RAtul14ApriL/tinyapp/issues"
