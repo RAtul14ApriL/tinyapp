@@ -1,3 +1,8 @@
+/*
+** Ideas/assistance from codes written during lectures by James, Christian, Andy and Francis has been taken. 
+** Also used reference from outside sources.
+*/
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
