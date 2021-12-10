@@ -1,0 +1,15 @@
+{
+  "name": "helper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "helper.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "../node_modules/mocha/bin/mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

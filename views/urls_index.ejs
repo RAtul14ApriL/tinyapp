@@ -25,6 +25,7 @@
           <th scope="col">Edit</th>
           <th scope="col">Delete</th>
           <th scope="col">User ID</th>
+          <th scope="col">Created on</th>
         </tr>
       </thread>
       <tbody>
@@ -32,31 +33,33 @@
           <% if(urls[url].userid===userID){ %>
             <tr>
               <td>
-                <a href="/urls/<%= url %>" ><%= url %></a>
+                <a href="/urls/<%= url %>">
+                  <%= url %>
+                </a>
               </td>
               <td>
                 <%= urls[url].longURL %>
               </td>
-              <td><a href="/urls/<%= url %>"><input class="btn btn-primary"  method="POST" type="button" value="Edit"></input></a></td>
-              <td><a href="/urls/<%= url %>/delete"><input class="btn btn-primary" method="POST" type="button" value="Delete"></input></a></td>
+              <td><a href="/urls/<%= url %>"><input class="btn btn-primary" method="POST" type="button"
+                    value="Edit"></input></a></td>
+              <td><a href="/urls/<%= url %>/delete"><input class="btn btn-primary" method="POST" type="button"
+                    value="Delete"></input></a></td>
               <td>
                 <%= urls[url].userid %>
               </td>
+              <td>
+                <%= urls[url].timeStamp %>
+              </td>
             </tr>
-            <% } else { %>
-              <tr>
-                <td>
-                  <a href="/urls/<%= url %>" ><%= url %></a>
-                </td>
-                <td>
-                  <%= urls[url].longURL %>
-                </td>
-                <td style="margin-left: 10px">---</td>
-                <td style="margin-left: 10px">---</td>
-                <td style="margin-left: 10px">---</td>
-              </tr>
-            <% } %>
-          <% } %>
+            <% } else {%>
+                  <tr></tr>
+              <% } %>
+              <% } %>
+      </tbody>
+    </table>
+    <table>
+      <tbody>
+        <tr><a href="/urls/new">Create a New Short Link</a></tr>
       </tbody>
     </table>
   </main>
