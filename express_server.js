@@ -3,11 +3,13 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const app = express();
 const PORT = 3000;
+const bcrypt = require("bcryptjs");
 
 //**************** **************************** */
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+
 
 //****************URL DATABASE**********************
 const urlDatabase = {
@@ -20,22 +22,22 @@ const urlDatabase = {
         userid: "aJ48"
     }
 };
-//***************USER DATABASE******************
+//***************USER DATABASE*****************
 const users = {
   "userRandomID": {
     id: "userRandomID",
     email: "01@abc.com",
-    password: "1234"
+    password: bcrypt.hashSync('1234', 10)
   },
   "user2RandomID": {
     id: "user2RandomID",
     email: "02@abc.com",
-    password: "abcd"
+    password: bcrypt.hashSync('abcd', 10)
   },
   "aJ48": {
     id: "aJ48",
     email: "aj@xyz.com",
-    password: "1234"
+    password: bcrypt.hashSync('1234', 10)
   }
 }
 //*********************************************** FUCNTIONS
@@ -159,9 +161,11 @@ app.post('/login', (req, res) => {
   if (!user) {
     return res.status(400).send("No account has been found with this email");
   }
-  if (password !== user.password) {
+  const passwordMatching = bcrypt.compareSync(password, user.password);
+  if (!passwordMatching) {
     return res.status(403).send("Invalid email or password");
   }
+  //console.log(users);
   res.cookie("userID", user.id);
   res.cookie("email", email)
   res.redirect("/urls");
@@ -197,8 +201,9 @@ app.post("/register", (req, res) => {
   users[userID] = {
     id: userID,
     email: email,
-    password: password
+    password: bcrypt.hashSync(password, 10)
   }
+
   res.cookie("userID", userID);
   res.cookie("email", email);
   console.log('new user: ', users[userID]);
