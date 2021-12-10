@@ -1,5 +1,3 @@
-const {users} = require("./userData");
-
 //********** HELPER FUCNTIONS
 //************************** URL GENERATOR**
 const generateRandomString = (length) => {
@@ -19,10 +17,10 @@ const findUser = (email, users) => {
     }
   }
   return null;
-}
+};
 
 //*************** TIMESTAMP ******/
-const currentdate = new Date(); 
-const timeStamp = currentdate.getDate() + "/" + (currentdate.getMonth()+1)  + "/" + currentdate.getFullYear() + " @ "  + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+const currentdate = new Date();
+const timeStamp = currentdate.getDate() + "/" + (currentdate.getMonth() + 1) + "/" + currentdate.getFullYear() + " @ " + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
 
-module.exports = {generateRandomString, findUser, timeStamp};
+module.exports = { generateRandomString, findUser, timeStamp };

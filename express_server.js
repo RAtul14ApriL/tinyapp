@@ -6,7 +6,7 @@ const app = express();
 const PORT = 3000;
 const bcrypt = require("bcryptjs");
 const {generateRandomString, findUser, timeStamp} = require("./helper/helper");
-const {urlDatabase, users} = require("./helper/userData")
+const {urlDatabase, users} = require("./helper/userData");
 
 //**************** **************************** */
 app.set("view engine", "ejs");
@@ -15,7 +15,7 @@ app.use(cookieParser());
 app.use(cookieSession({
   name: "session",
   keys: ["Danger is real, but fear is a choice", "key"]
-}))
+}));
 
 //******************************************HOME**
 app.get("/", (req, res) => {
@@ -49,7 +49,7 @@ app.get("/urls/new", (req, res) => {
   const templateVars = {
     email: req.session.email,
     userID: req.session.userID
-  }
+  };
   const userID = req.session.userID;
   if (!userID) {
     res.redirect("/login");
@@ -63,17 +63,10 @@ app.post("/urls/new", (req, res) => {
   let longURL = req.body.longURL;
   let shortURL = generateRandomString(6);
   urlDatabase[shortURL] = { "longURL": longURL, "userid": userID, timeStamp: timeStamp };
-  const templateVars = {
-    urls: urlDatabase,
-    email: req.session.email,
-    userID: req.session.userID,
-    users: users
-  };
   req.session.longURL = longURL;
   req.session.shortURL = shortURL;
-  //res.send(urlDatabase);
   res.redirect("/urls");
-})
+});
 //***************************************SHOW SINGLE URL PAGE**
 app.get("/urls/:shortURL", (req, res) => {
   const templateVars = {
@@ -84,10 +77,9 @@ app.get("/urls/:shortURL", (req, res) => {
     userID: req.session.userID,
     timeStamp: timeStamp
   };
-  if(!templateVars.userID) {
+  if (!templateVars.userID) {
     return res.status(400).send(`Please Login or Register to see the short URLs`);
   }
-  // res.send(urlDatabase[req.params.shortURL].longURL);  
   res.render("urls_show", templateVars);
 });
 //**************************************************** EDIT URL [NEED SOME WORK]
@@ -114,22 +106,22 @@ app.get("/urls/:shortURL/delete", (req, res) => {
   }
   res.render("delete_url", templateVars);
 });
-  app.post("/urls/:shortURL/delete", (req, res) => {
-    const confirmDelete = () => {
-      const urlToDel = req.params.shortURL;
-        delete urlDatabase[urlToDel];
-        return res.redirect("/urls");
-    }
-    confirmDelete();   
+app.post("/urls/:shortURL/delete", (req, res) => {
+  const confirmDelete = () => {
+    const urlToDel = req.params.shortURL;
+    delete urlDatabase[urlToDel];
+    return res.redirect("/urls");
+  };
+  confirmDelete();
 });
 // **************************************************LOGIN
 app.get('/login', (req, res) => {
   const templateVars = {
     email: req.session.email,
     userID: req.session.userID
-  }
+  };
   res.render("login", templateVars);
-})
+});
 app.post('/login', (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
@@ -162,7 +154,7 @@ app.get("/register", (req, res) => {
   const templateVars = {
     email: req.session.email,
     userID: req.session.userID
-  }
+  };
   res.render("register", templateVars);
 });
 
@@ -182,8 +174,7 @@ app.post("/register", (req, res) => {
     id: userID,
     email: email,
     password: bcrypt.hashSync(password, 10)
-  }
-
+  };
   req.session.userID = "userID";
   req.session.email = "email";
   console.log('new user: ', users[userID]);
